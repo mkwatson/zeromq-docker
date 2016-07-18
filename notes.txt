@@ -1,0 +1,44 @@
+* To create a new container and get it's ID in a shell script:
+
+	CID=$(docker create nginx:latest)
+	echo $CID
+
+* Linking containers
+* Read only filesystems and volumes
+* Use init or supervisor in the container (to restart processes if they crash)
+	* How does this compare with the docker --restart flag?
+
+To search for docker images use:
+
+	docker search <docker image>
+
+* Mount volumes to share data outside of the container
+* Volumes can be read-only to the container
+* Problems:
+	* Tie otherwie portable containers to the filesystem of a specific host
+	* Multiple containers could compete for the same set of files
+
+* Docker-managed columes
+	* Not exactly sure how this works with OSX.
+	  I can't find the folder on the host system
+
+* To copy managed volumes between containers use:
+
+	--columes-from <container>
+
+* Remove all containers with:
+
+	docker rm -v $(docker ps -aq)
+
+* Volume containers are only provide a handle to volumes
+	* Like for database data (so you can do super simple updates)
+
+* Data-packed volume containers for configuration
+
+* Use volumes to create polymorphic containers
+	* Environment settings
+	* Debug tools
+	* Etc
+
+* CH 12 has multi-host docker info
+
